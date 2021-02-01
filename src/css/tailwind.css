@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1{
+    @apply text-6xl text-center mt-5 text-red-400 sm:tracking-wider;
+    font-family: "Shadows Into Light Two", cursive;
+}
+.form-container{
+    @apply flex flex-row justify-center items-start h-full /*flex-wrap*/;
+}
+
+.tache{
+    @apply mt-12 rounded-l-lg shadow-lg placeholder-red-400 w-auto h-12 px-4 sm:w-96;
+}
+
+.btn-form{
+    @apply relative top-1.5 text-xs bg-red-500 rounded-r-lg hover:bg-green-300 hover:shadow-lg text-white font-bold shadow-lg w-20 h-12 sm:w-36 sm:relative sm:-top-px sm:text-sm;
+}
