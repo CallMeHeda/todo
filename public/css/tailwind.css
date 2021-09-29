@@ -18822,7 +18822,6 @@ video {
 }
 
 .sticky {
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -31691,7 +31690,7 @@ video {
           animation: bounce 1s infinite;
 }
 
-h1{
+h1 {
   font-size: 3.75rem;
   line-height: 1;
   margin-top: 1.25rem;
@@ -31710,7 +31709,7 @@ h1 {
   font-family: "Shadows Into Light Two", cursive;
 }
 
-.form-container{
+.form-container {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -31718,13 +31717,19 @@ h1 {
   height: 100%;
 }
 
-.tache{
+input {
+  margin-right: -1rem;
+}
+
+.tache {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   height: 3rem;
   margin-top: 3rem;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 2rem;
 }
 
 .tache::-moz-placeholder {
@@ -31745,7 +31750,6 @@ h1 {
 .tache {
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  width: auto;
 }
 
 @media (min-width: 640px) {
@@ -31754,7 +31758,43 @@ h1 {
   }
 }
 
-.btn-form{
+.edit_task{
+  border-radius: 0.5rem;
+  height: 3rem;
+  margin-left: 2rem;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  padding-left: 1rem;
+  padding-right: 2rem;
+}
+
+.edit_task::-moz-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgba(248, 113, 113, var(--tw-placeholder-opacity));
+}
+
+.edit_task:-ms-input-placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgba(248, 113, 113, var(--tw-placeholder-opacity));
+}
+
+.edit_task::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgba(248, 113, 113, var(--tw-placeholder-opacity));
+}
+
+.edit_task {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 640px) {
+  .edit_task {
+    width: 20rem;
+  }
+}
+
+.btn-form {
   --tw-bg-opacity: 1;
   background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
@@ -31792,10 +31832,31 @@ h1 {
   .btn-form {
     font-size: 0.875rem;
     line-height: 1.25rem;
+    margin-left: 0.625rem;
     position: relative;
     top: -1px;
     width: 9rem;
   }
+}
+
+.countChar {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-top: 5rem;
+  margin-left: -1.5rem;
+  position: absolute;
+  --tw-text-opacity: 1;
+  color: rgba(156, 163, 175, var(--tw-text-opacity));
+}
+
+.countCharEdit{
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-top: 2rem;
+  margin-left: -1.5rem;
+  position: absolute;
+  --tw-text-opacity: 1;
+  color: rgba(156, 163, 175, var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {
@@ -50075,7 +50136,6 @@ h1 {
   }
 
   .sm\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -81143,7 +81203,6 @@ h1 {
   }
 
   .md\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -112211,7 +112270,6 @@ h1 {
   }
 
   .lg\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -143279,7 +143337,6 @@ h1 {
   }
 
   .xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -174347,7 +174404,6 @@ h1 {
   }
 
   .\32xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 

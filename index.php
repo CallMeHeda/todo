@@ -1,9 +1,10 @@
 <?php
 //session_start();
-include('src/PHP_Files/connexion_db.php');
+//include('src/PHP_Files/connexion_db.php');
 ?>
 <!DOCTYPE html>
 <html lang='fr'>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,43 +17,79 @@ include('src/PHP_Files/connexion_db.php');
     <title>To Do List</title>
 </head>
 
-<body class="bg-yellow-100">
+<body class="bg-yellow-100" id="body">
 
 <h1>To Do List !</h1>
 <div class="form-container">
     <form action="" method="POST">
-        <input type="text" class="tache" name="tache" placeholder="Thing to remember" required>
-        <button class="btn-form">Let's remember! <span>&#43;</span></button>
+        <input type="text" class="tache" name="tache" id="tache" maxlength="80" placeholder="Thing to remember" autocomplete="off" required><span class="countChar">0/80</span>
+        <button class="btn-form">Let's remember!</button>
     </form>
 </div>
-
-<?php
-if (isset($_POST['tache'])) {
-    include('src/PHP_Files/insert_tache.php');
-}
-include("src/PHP_Files/select_tache.php");
-
-?>
-
+<!--TO DO-->
+<div id="displaydata"><?php include('src/PHP_Files/select_tache.php'); ?></div>
 <script>
     $(document).ready(function () {
-        $('.remove-to-do').click(function () {
-            const id = $(this).attr('id');
+        // $(function () {
+        //     $('body').css('visibility', 'visible');
+        // });
+        checkCrossOut();
+        // ADD NEW TODO
+        $('.btn-form').click(function (e) {
+            e.preventDefault();
+            var tache = $('#tache').val();
 
-            $.post("src/PHP_Files/delete_tache.php",
-                {
-                    id: id
-                },
-                (data) => {
-                    if (data) {
-                        $(this).parent().hide(600);
+            if (tache !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "src/PHP_Files/insert_tache.php",
+                    data: {
+                        tache: tache
+                    },
+                    success: function () {
+                        $('form')[0].reset();
+                        // $("#displaydata").load('src/PHP_Files/select_tache.php');
+                        // checkCrossOut();
                     }
+                });
+                // DISPLAY TO DO
+                selectTask = tache;
+                $.ajax({
+                    type: "GET",
+                    url: "src/PHP_Files/select_tache.php",
+                    contentType: "application/json",
+                    data: {
+                        tache : selectTask
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        $('#displaydata').html(data);
+                        checkCrossOut();
+                    }
+                });
+            } else {
+                alert("Nothing to do?");
+            }
+            $(".countChar").html("0/80");
+        });
+
+        //NB CHAR INPUT
+        $('.tache').keydown(function (e) {
+            var tache = $(".tache").val();
+
+            if (e.keyCode !== 8) {
+                if (this.value.length >= 80) {
+                    return false;
+                } else {
+                    $(".countChar").html((tache.length + 1) + "/80");
                 }
-            );
+            } else {
+                if (this.value.length > 0 && this.value.length <= 80) {
+                    $(".countChar").html((tache.length - 1) + "/80");
+                }
+            }
         });
     })
 </script>
-
-
 </body>
 </html>
