@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="public/css/tailwind.css"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <title>To Do List</title>
+    <title>ToDo List</title>
 </head>
 
-<body class="bg-yellow-100" id="body">
+<body class="bg-yellow-50" id="body">
 
-<h1>To Do List !</h1>
+<h1><span>ToDo</span> List</h1>
 <div class="form-container">
     <form action="" method="POST">
         <input type="text" class="tache" name="tache" id="tache" maxlength="80" placeholder="Thing to remember" autocomplete="off" required><span class="countChar">0/80</span>

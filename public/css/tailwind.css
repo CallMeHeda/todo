@@ -31709,6 +31709,11 @@ h1 {
   font-family: "Shadows Into Light Two", cursive;
 }
 
+h1 span{
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
+
 .form-container {
   display: flex;
   flex-direction: row;

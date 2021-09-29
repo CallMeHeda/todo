@@ -6,7 +6,9 @@ h1 {
     @apply text-6xl text-center mt-5 text-red-400 sm:tracking-wider;
     font-family: "Shadows Into Light Two", cursive;
 }
-
+h1 span{
+    @apply text-black;
+}
 .form-container {
     @apply flex flex-row justify-center items-start h-full;
 }

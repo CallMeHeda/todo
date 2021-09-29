@@ -24,18 +24,18 @@ if ($requete_correcte === FALSE) {
 <!--                    </thead>-->
                     <tbody>
                     <?php foreach ($les_taches as $une_tache) { ?>
-                        <tr class="bg-red-400 text-left trTask transform hover:-translate-y-1 hover:scale-110 hover:transition duration-500 ease-in-out " id="<?php echo $une_tache['id']; ?>" data-target="todo_line">
-                            <td class="flex p-3 pr-52 capitalize task" id="task" data-target="todo" data-id="<?php echo $une_tache['id']; ?>"><?php echo($une_tache['tache']); ?></td>
+                        <tr class="bg-red-400 text-left transform hover:-translate-y-1 hover:scale-110 hover:transition duration-1000 ease-in-out trTask" id="<?php echo $une_tache['id']; ?>" data-target="todo_line">
+                            <td class="flex sm:p-3 sm:pr-52 capitalize task" id="task" data-target="todo" data-id="<?php echo $une_tache['id']; ?>"><?php echo($une_tache['tache']); ?></td>
                             <!-- ACTIONS -->
                             <td id="<?php echo $une_tache['id']; ?>"
                                 class="align-items-center p-3 text-center" data-target="action">
                                 <!-- CHECK WHEN TO DO IS DONE -->
-                                <button class="btn bg-transparent px-2 btnCheck" id="btnCheck" data-role="check"                                                           data-id="<?php echo $une_tache['id']; ?>" onclick="crossOut(this)"><i class='fas fa-check'></i></button>
+                                <button class="btn bg-transparent px-2 transform hover:scale-150 hover:transition duration-1000 ease-in-out btnCheck" id="btnCheck" data-role="check"                                                           data-id="<?php echo $une_tache['id']; ?>" onclick="crossOut(this)"><i class='fas fa-check'></i></button>
                                 <!-- UPDATE TO DO -->
-                                <button class="btn bg-transparent px-2 btnEdit" data-role="update"
+                                <button class="btn bg-transparent px-2 transform hover:scale-150 hover:transition duration-1000 ease-in-out btnEdit" id="btnEdit" data-role="update"
                                         data-id="<?php echo $une_tache['id']; ?>"><i class='far fa-edit'></i></button>
                                 <!-- REMOVE TO DO -->
-                                <button class="btn bg-transparent px-2 btnDelete" data-role="delete"                                                          data-id="<?php echo $une_tache['id']; ?>"><i class='fas fa-trash-alt'></i>
+                                <button class="btn bg-transparent px-2 transform hover:scale-150 hover:transition duration-1000 ease-in-out btnDelete" data-role="delete"                                                          data-id="<?php echo $une_tache['id']; ?>"><i class='fas fa-trash-alt'></i>
                                 </button>
                             </td>
                         </tr>
@@ -79,23 +79,28 @@ if ($requete_correcte === FALSE) {
             method : 'POST',
             data : {tache : task,id : id},
             success : function (){
-                $('#' + id).fadeOut(1000);
+                $('#' + id).remove();
             }
         });
-
     });
 
     // UPDATE TO DO
     $(document).on('click', 'button[data-role=update]', function () {
         var id = $(this).data('id');
         var tache = $('#' + id).children('td[data-target=todo]').text();
+        var disabled = document.getElementById("btnEdit").hasAttribute("disabled");
 
-        $(".modal").removeClass("hidden");
-        $(".modal").addClass("block");
-        $("form").hide();
+        // if(disabled === false){
+        //     alert("Task is done, you don't need to update it :)");
+        // }else{
+            $(".modal").removeClass("hidden");
+            $(".modal").addClass("block");
+            $("form").hide();
 
-        $('.edit_task').val(tache);
-        $('#taskId').val(id);
+            $('.edit_task').val(tache);
+            $('#taskId').val(id);
+        // }
+
     });
 
     // Confirm update
@@ -150,7 +155,16 @@ if ($requete_correcte === FALSE) {
             console.log(e);
             e.parentElement.parentElement.children[0].classList.add("line-through");
             e.parentElement.parentElement.children[0].classList.remove("no-underline");
-            e.parentElement.parentElement.classList.add("opacity-30");
+            e.parentElement.parentElement.classList.add("opacity-40","bg-green-400");
+
+            e.parentElement.children[0].classList.remove("hover:text-green-200");
+            e.parentElement.children[1].classList.remove("hover:text-green-200");
+            e.parentElement.children[2].classList.remove("hover:text-green-200");
+
+            e.parentElement.children[0].classList.add("hover:text-red-700");
+            e.parentElement.children[1].classList.add("hover:text-red-700");
+            e.parentElement.children[2].classList.add("hover:text-red-700");
+            e.parentElement.children[1].setAttribute("disabled","");
 
             cookieTable = JSON.parse(localStorage.getItem('strike')) || [];
             const id = e.dataset['id'];
@@ -159,7 +173,18 @@ if ($requete_correcte === FALSE) {
         }else {
             e.parentElement.parentElement.children[0].classList.add("no-underline");
             e.parentElement.parentElement.children[0].classList.remove("line-through");
-            e.parentElement.parentElement.classList.remove("opacity-30");
+
+            e.parentElement.parentElement.classList.remove("opacity-40","bg-green-400");
+
+            e.parentElement.children[0].classList.remove("hover:text-red-700");
+            e.parentElement.children[1].classList.remove("hover:text-red-700");
+            e.parentElement.children[2].classList.remove("hover:text-red-700");
+
+            e.parentElement.children[0].classList.add("hover:text-green-200");
+            e.parentElement.children[1].classList.add("hover:text-green-200");
+            e.parentElement.children[2].classList.add("hover:text-green-200");
+
+            e.parentElement.children[1].removeAttribute("disabled");
 
             cookieTable = JSON.parse(localStorage.getItem('strike')) || [];
             const id = e.dataset['id'];
@@ -178,11 +203,23 @@ if ($requete_correcte === FALSE) {
 
         if (storage !== null) {
             for (var i = 0; i < todos.length; i++) {
+                todos[i].parentElement.children[1].children[0].classList.add("hover:text-green-200");
+                todos[i].parentElement.children[1].children[1].classList.add("hover:text-green-200");
+                todos[i].parentElement.children[1].children[2].classList.add("hover:text-green-200");
                 for (var j = 0; j < storage.length; j++) {
                     if (todos[i].dataset['id'] === storage[j]) {
                         todos[i].classList.add("line-through");
-                        todos[i].parentElement.classList.add("opacity-60");
-                        // todos[i].innerHTML;
+                        todos[i].parentElement.classList.add("opacity-40","bg-green-400");
+
+                        todos[i].parentElement.children[1].children[0].classList.remove("hover:text-green-200");
+                        todos[i].parentElement.children[1].children[1].classList.remove("hover:text-green-200");
+                        todos[i].parentElement.children[1].children[2].classList.remove("hover:text-green-200");
+
+                        todos[i].parentElement.children[1].children[0].classList.add("hover:text-red-700");
+                        todos[i].parentElement.children[1].children[1].classList.add("hover:text-red-700");
+                        todos[i].parentElement.children[1].children[2].classList.add("hover:text-red-700");
+
+                        todos[i].parentElement.children[1].children[1].setAttribute("disabled","");
                     }
                 }
             }
