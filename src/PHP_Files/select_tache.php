@@ -1,27 +1,19 @@
 <?php
-include('connexion_db.php');
-
-$sql = "SELECT * FROM todolist ORDER BY id";
+//include('connexion_db.php');
+$sql = "SELECT todolist.id,todolist.tache,todolist.user_id FROM todolist INNER JOIN user ON todolist.user_id=user.id";
+$dbh = new PDO('mysql:host=localhost;dbname=todo','root', '');
 $sth = $dbh->prepare($sql);
 $requete_correcte = $sth->execute();
 
 if ($requete_correcte === FALSE) {
     echo("Erreur : la requete SQL est incorrecte. <br/>");
 } else {
-
     $les_taches = $sth->fetchAll(PDO::FETCH_ASSOC);
     ?>
-
-    <div class="flex items-start justify-center min-h-screen bg-transparent">
+    <div class="flex items-start justify-center min-h-screen bg-transparent logged">
         <div class="col-span-12">
             <div class="overflow-auto lg:overflow-visible">
                 <table class="text-white border-separate space-y-6 text-sm mt-4 todoTable">
-<!--                    <thead class="bg-red-600 uppercase">-->
-<!--                    <tr>-->
-<!--                        <th class="p-3 text-center">To do</th>-->
-<!--                        <th class="p-3 text-center">Action</th>-->
-<!--                    </tr>-->
-<!--                    </thead>-->
                     <tbody>
                     <?php foreach ($les_taches as $une_tache) { ?>
                         <tr class="bg-red-400 text-left transform hover:-translate-y-1 hover:scale-110 hover:transition duration-1000 ease-in-out trTask" id="<?php echo $une_tache['id']; ?>" data-target="todo_line">

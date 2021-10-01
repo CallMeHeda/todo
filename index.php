@@ -1,10 +1,21 @@
 <?php
-//session_start();
-//include('src/PHP_Files/connexion_db.php');
+if(!isset($_SESSION)) {
+    session_start();
+}
+include('src/PHP_Files/connexion_db.php');
+if (isset($_GET['choix'])) {
+    $choix = $_GET['choix'];
+} else {
+    $choix = 'se_connecter';
+}
+switch ($choix) {
+    case 'authentification_start':
+        include('src/PHP_Files/login_start.php');
+        break;
+}
 ?>
 <!DOCTYPE html>
 <html lang='fr'>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,24 +28,62 @@
     <title>ToDo List</title>
 </head>
 
-<body class="bg-yellow-50" id="body">
+<body class="bg-gradient-to-tr from-green-300 to-red-300" id="body">
 
-<h1><span>ToDo</span> List</h1>
-<div class="form-container">
-    <form action="" method="POST">
-        <input type="text" class="tache" name="tache" id="tache" maxlength="80" placeholder="Thing to remember" autocomplete="off" required><span class="countChar">0/80</span>
-        <button class="btn-form">Let's remember!</button>
-    </form>
-</div>
-<!--TO DO-->
-<div id="displaydata"><?php include('src/PHP_Files/select_tache.php'); ?></div>
+<?php switch ($choix) {
+    case 'authentification_stop' :
+        include('src/PHP_Files/logout.php');
+        break;
+    case 'todos' :
+        include('src/PHP_Files/todos.php');
+        break;
+    case 'new_member_formulaire' :
+        include('src/PHP_Files/signup.php');
+        break;
+    case 'se_connecter' :
+        include('src/PHP_Files/login.php');
+        break;
+    default :
+        include('src/PHP_Files/login.php');
+}
+?>
+<div class="container">
+    <h1><span>ToDo</span> List</h1>
+
+    <!--TO DO-->
+<!--    <div class="">-->
+       <?php if (isset($_SESSION['login'])) { ?>
+           <form id="deconnexion" class=""
+                 action="index.php?choix=authentification_stop" method="POST">
+               <a href="index.php?choix=authentification_stop" class="nav-link">Deconnexion</a>
+           </form>
+            <div class="form-container">
+                <form action="" method="POST" class="form_task">
+                    <input type="text" class="tache" name="tache" id="tache" maxlength="80"
+                           placeholder="Thing to remember" autocomplete="off" required><span
+                            class="countChar">0/80</span>
+                    <button class="btn-form">Let's remember!</button>
+                </form>
+            </div>
+            <div id="displaydata"><?php include('src/PHP_Files/select_tache.php'); ?></div>
+            <?php } ?>
+    </div>
 <script>
     $(document).ready(function () {
         // $(function () {
         //     $('body').css('visibility', 'visible');
         // });
-        checkCrossOut();
-        // ADD NEW TODO
+
+        if (!<?php echo isset($_SESSION['login'])?'true':'false'; ?>) {
+            $(".container").hide();
+            console.log("not logged")
+        } else {
+            $(".div_log").show();
+            $(".container").show();
+            checkCrossOut();
+        }
+
+        // ADD NEW TO DO INTO DATABASE
         $('.btn-form').click(function (e) {
             e.preventDefault();
             var tache = $('#tache').val();
@@ -47,9 +96,7 @@
                         tache: tache
                     },
                     success: function () {
-                        $('form')[0].reset();
-                        // $("#displaydata").load('src/PHP_Files/select_tache.php');
-                        // checkCrossOut();
+                        $('.form_task')[0].reset();
                     }
                 });
                 // DISPLAY TO DO
@@ -89,7 +136,45 @@
                 }
             }
         });
+
+        // LOGIN
+        // $(".login").click(function (){
+        //     $(".div_log").hide();
+        //     $(".container").hide();
+        //     $(".login_window").removeClass("hidden");
+        //     $(".login_window").show();
+        // });
+        // Close login form
+        // $(".close").click(function (){
+        //     $(".div_log").show();
+        //     $(".container").show();
+        //     $(".login_window").addClass("hidden");
+        //     $(".login_window").hide();
+        // });
     })
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Code pour afficher le mot de passe à la connexion
+    function fonction_voir_mdp() {
+        var mdp = document.getElementById("password");
+        if (mdp.type === "password") {
+            mdp.type = "text";
+        } else {
+            mdp.type = "password";
+        }
+    }
+    //Code pour afficher le mot de passe à la connexion à l'inscription au moment de la confirmation
+    function fonction_voir_mdp_inscription() {
+        var mdp = document.getElementById("password_conf");
+        if (mdp.type === "password") {
+            mdp.type = "text";
+        } else {
+            mdp.type = "password";
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+
 </script>
 </body>
 </html>
