@@ -1,44 +1,47 @@
-<?php
-if (isset($_GET['mess'])) {
-    $mess = $_GET['mess'];
-    switch ($mess) {
-        case 'err_mdp' :
-            echo ("<p>Wrong password</p> \r\n");
-            break;
-        case 'err_login' :
-            echo ("<p>Already exists. Choose another</p> \r\n");
-            break;
-        default :
-            echo ("<p>Error message not supported</p> \r\n");
-            break;
-    }
-}
-?>
-<div class="">
-    <div class="col-sm-6 offset-sm-3 text-center">
-        <form id='form_inscription' class="justify-content-center text-center" method="POST" action="index.php?choix=new_member_reception">
+<div class="login_window">
+    <div class="bg-login">
+        <div class="login-left-side">
+            <h1 class="text-3xl md:text-5xl font-bold text-white my-2 md:my-0">
+                Todo list
+            </h1>
+            <p class="letsRemember">
+                Let's Remember!
+            </p>
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4">
 
-            <div id="form-group0" class="form-group">
-                <label for="login" class="control-label"><b>Login</b></label>
-                <input id="login_" name="login" class="form-control" type="text">
-                <span id="form-text0" class="form-text" style="display: none;">Minimum 6 caractères</span>
-            </div>
+            <h3 class="mb-4 font-bold text-3xl flex items-center text-red-500">
+                LOGIN
+            </h3>
 
-            <div id="form-group1" class="form-group">
-                <label for="password" class="control-label"><b>Password </b></label>
-                <input id="password_inscription" name="password" class="form-control" type="password">
-                <span id="form-text1" class="form-text" style="display: none;">Mot de passe : minimum 3 caractères et minimum 2 chiffres</span>
-            </div>
+            <form action="index.php?choix=authentification_start" method="POST"
+                  class="px-3 flex flex-col justify-center items-center w-full gap-3">
 
-            <div class='form-group'>
-                <label for="password_conf"><b>Confirmez le password </b></label>
-                <input id="password_conf" name="password_conf" type="password" class="form-control" required>
-            </div>
+                <input
+                        type="text" id="login"
+                        class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        placeholder="login" name="login">
+                <input type="password" placeholder="password"
+                       class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                       id="password" name="password">
 
-            <label>
-                <input id="voir_mdp" name="voir_mdp" type="checkbox" onclick="fonction_voir_mdp_inscription()"> Voir le mot de passe
-            </label>
-            <button id="button_submit" type="SUBMIT" class="btn btn-danger">S'inscrire</button>
-        </form>
+                <label>
+                    <input id="voir_mdp" name="show_password" type="checkbox" onclick="fonction_voir_mdp()">
+                    <span class="ml-4 text-sm">Show password</span>
+                </label>
+
+                <button class="btn-log" type="submit">
+                    <i class="far fa-sign-in-alt fa-flip-horizontal"></i>
+                    <p class="ml-1 text-lg">Login</p>
+                </button>
+            </form>
+            <p class="text-gray-700 text-sm mt-2">
+                don't have an account?
+                <a href="index.php?choix=new_member_formulaire"
+                   class="text-green-400 hover:text-green-600 mt-3 focus:outline-none font-bold underline">
+                    register
+                </a>
+            </p>
+        </div>
     </div>
 </div>

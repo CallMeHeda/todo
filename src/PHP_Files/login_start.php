@@ -1,6 +1,4 @@
 <?php
-//include("connexion_db.php");
-
 $login_tentative = htmlspecialchars($_POST['login']);
 $password_tentative = htmlspecialchars($_POST['password']);
 
@@ -21,8 +19,8 @@ if ($requete_correcte === FALSE) {
         session_regenerate_id();
         @ini_set('session.gc_maxlifetime', 10800);
         $_SESSION['login'] = $user['login'];
-//        var_dump($user);
-//        header('Location:index.php?choix=home');
+        $_SESSION['id'] = $user['id'];
+        header('Location:index.php?choix=todos');
     }else {
         header('Location:index.php?choix=home&msg=err_password');
     }

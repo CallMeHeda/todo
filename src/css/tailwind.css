@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html,body{
+    @apply m-0 p-0;
+}
+html{
+    @apply h-full;
+}
+body{
+    @apply bg-gradient-to-bl from-green-300 to-red-300 bg-fixed;
+}
 h1 {
     @apply text-6xl text-center mt-5 text-red-400 sm:tracking-wider;
-    font-family: cursive;
-}
-h1 span{
-    @apply text-black;
+    font-family: 'Permanent Marker', cursive;
 }
 .form-container {
     @apply flex flex-row justify-center items-start h-full;
@@ -17,6 +23,28 @@ input {
 }
 .tache {
     @apply mt-12 rounded-l-lg shadow-lg placeholder-red-400 h-12 pl-4 pr-8 outline-none sm:w-96;
+}
+#displaydata{
+    @apply bg-transparent m-auto flex justify-center bg-transparent;
+}
+.todoTable{
+    @apply text-white border-separate space-y-6 text-sm mt-4 w-screen lg:w-auto;
+}
+.trTask{
+    @apply text-left transform hover:-translate-y-1 hover:scale-110 transition duration-1000 ease-in-out;
+}
+.task{
+    @apply flex p-3 break-words sm:pr-20 text-3xl capitalize;
+    font-family: 'Italianno', cursive;
+}
+.actions{
+    @apply items-center p-3 text-center;
+}
+.btnCheck,.btnEdit,.btnDelete{
+    @apply bg-transparent px-2 transform hover:scale-150 transition duration-1000 ease-in-out;
+}
+.modal{
+    @apply bg-white rounded-lg fixed top-40;
 }
 .edit_task{
     @apply rounded-lg shadow-lg placeholder-red-400 h-12 pl-4 pr-8 ml-8 outline-none sm:w-80;
@@ -29,4 +57,33 @@ input {
 }
 .countCharEdit{
     @apply absolute text-gray-400 mt-8 -ml-6 text-xs;
+}
+.cancel{
+    @apply w-1/2 px-4 py-3 text-center bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-black font-bold rounded-lg text-sm;
+}
+.save{
+    @apply w-1/2 px-4 py-3 text-center text-pink-100 bg-pink-600 rounded-lg hover:bg-pink-700 hover:text-white font-bold text-sm;
+}
+.login_window{
+    @apply h-screen w-full flex justify-center items-center bg-gradient-to-bl from-green-300 to-red-300;
+}
+.bg-login{
+    @apply w-full sm:w-1/2 md:w-9/12 lg:w-1/2 mx-3 md:mx-5 lg:mx-0 shadow-md flex flex-col md:flex-row items-center rounded z-10 overflow-hidden bg-center bg-cover bg-red-600;
+}
+.login-left-side{
+    @apply w-full md:w-1/2 flex flex-col justify-center items-center bg-opacity-25 bg-red-600;
+}
+.btn-log{
+    @apply flex justify-center items-center bg-red-500 hover:bg-green-400 text-white focus:outline-none focus:ring rounded px-3 py-1;
+}
+.logout{
+    @apply left-80 relative w-max top-2 md:left-full md:ml-8 hover:text-red-400;
+}
+.loginUser{
+    @apply flex justify-center ml-72 sm:ml-80 text-3xl -mt-2 text-black;
+    font-family: 'Italianno', cursive;
+}
+.letsRemember{
+    @apply mb-2 text-black text-xl hidden md:block;
+    font-family: 'WindSong', cursive;
 }

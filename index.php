@@ -1,7 +1,7 @@
 <?php
-if(!isset($_SESSION)) {
-    session_start();
-}
+//if(!isset($_SESSION)){
+session_start();
+//}
 include('src/PHP_Files/connexion_db.php');
 if (isset($_GET['choix'])) {
     $choix = $_GET['choix'];
@@ -25,10 +25,14 @@ switch ($choix) {
     <link rel="stylesheet" href="public/css/tailwind.css"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Italianno">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=WindSong:wght@500&display=swap" rel="stylesheet">
     <title>ToDo List</title>
 </head>
 
-<body class="bg-gradient-to-tr from-green-300 to-red-300" id="body">
+<body id="body" class="container">
 
 <?php switch ($choix) {
     case 'authentification_stop' :
@@ -37,8 +41,14 @@ switch ($choix) {
     case 'todos' :
         include('src/PHP_Files/todos.php');
         break;
+    case 'select_task' :
+        include('src/PHP_Files/select_tache.php');
+        break;
     case 'new_member_formulaire' :
         include('src/PHP_Files/signup.php');
+        break;
+    case 'signup_reception' :
+        include('src/PHP_Files/signup_reception.php');
         break;
     case 'se_connecter' :
         include('src/PHP_Files/login.php');
@@ -47,27 +57,6 @@ switch ($choix) {
         include('src/PHP_Files/login.php');
 }
 ?>
-<div class="container">
-    <h1><span>ToDo</span> List</h1>
-
-    <!--TO DO-->
-<!--    <div class="">-->
-       <?php if (isset($_SESSION['login'])) { ?>
-           <form id="deconnexion" class=""
-                 action="index.php?choix=authentification_stop" method="POST">
-               <a href="index.php?choix=authentification_stop" class="nav-link">Deconnexion</a>
-           </form>
-            <div class="form-container">
-                <form action="" method="POST" class="form_task">
-                    <input type="text" class="tache" name="tache" id="tache" maxlength="80"
-                           placeholder="Thing to remember" autocomplete="off" required><span
-                            class="countChar">0/80</span>
-                    <button class="btn-form">Let's remember!</button>
-                </form>
-            </div>
-            <div id="displaydata"><?php include('src/PHP_Files/select_tache.php'); ?></div>
-            <?php } ?>
-    </div>
 <script>
     $(document).ready(function () {
         // $(function () {
@@ -75,7 +64,8 @@ switch ($choix) {
         // });
 
         if (!<?php echo isset($_SESSION['login'])?'true':'false'; ?>) {
-            $(".container").hide();
+            // $(".container").hide();
+            $(".login_window").show();
             console.log("not logged")
         } else {
             $(".div_log").show();
@@ -95,25 +85,27 @@ switch ($choix) {
                     data: {
                         tache: tache
                     },
-                    success: function () {
+                    success: function (data) {
                         $('.form_task')[0].reset();
+                                $('#displaydata').html(data);
+                                checkCrossOut();
                     }
                 });
                 // DISPLAY TO DO
-                selectTask = tache;
-                $.ajax({
-                    type: "GET",
-                    url: "src/PHP_Files/select_tache.php",
-                    contentType: "application/json",
-                    data: {
-                        tache : selectTask
-                    },
-                    datatype: 'json',
-                    success: function (data) {
-                        $('#displaydata').html(data);
-                        checkCrossOut();
-                    }
-                });
+                // selectTask = tache;
+                // $.ajax({
+                //     type: "GET",
+                //     url: "src/PHP_Files/select_tache.php",
+                //     contentType: "application/json",
+                //     data: {
+                //         tache : selectTask
+                //     },
+                //     datatype: 'json',
+                //     success: function (data) {
+                //         $('#displaydata').html(data);
+                //         checkCrossOut();
+                //     }
+                // });
             } else {
                 alert("Nothing to do?");
             }
