@@ -91,21 +91,6 @@ switch ($choix) {
                                 checkCrossOut();
                     }
                 });
-                // DISPLAY TO DO
-                // selectTask = tache;
-                // $.ajax({
-                //     type: "GET",
-                //     url: "src/PHP_Files/select_tache.php",
-                //     contentType: "application/json",
-                //     data: {
-                //         tache : selectTask
-                //     },
-                //     datatype: 'json',
-                //     success: function (data) {
-                //         $('#displaydata').html(data);
-                //         checkCrossOut();
-                //     }
-                // });
             } else {
                 alert("Nothing to do?");
             }
@@ -128,25 +113,7 @@ switch ($choix) {
                 }
             }
         });
-
-        // LOGIN
-        // $(".login").click(function (){
-        //     $(".div_log").hide();
-        //     $(".container").hide();
-        //     $(".login_window").removeClass("hidden");
-        //     $(".login_window").show();
-        // });
-        // Close login form
-        // $(".close").click(function (){
-        //     $(".div_log").show();
-        //     $(".container").show();
-        //     $(".login_window").addClass("hidden");
-        //     $(".login_window").hide();
-        // });
     })
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Code pour afficher le mot de passe à la connexion
     function fonction_voir_mdp() {
         var mdp = document.getElementById("password");
         if (mdp.type === "password") {
@@ -155,18 +122,17 @@ switch ($choix) {
             mdp.type = "password";
         }
     }
-    //Code pour afficher le mot de passe à la connexion à l'inscription au moment de la confirmation
-    function fonction_voir_mdp_inscription() {
-        var mdp = document.getElementById("password_conf");
-        if (mdp.type === "password") {
+    function fonction_voir_mdp_inscription(){
+        var mdpConf = document.getElementById("conf_password");
+        var mdp = document.getElementById("password");
+        if (mdp.type === "password" && mdpConf.type === "password") {
             mdp.type = "text";
+            mdpConf.type = "text";
         } else {
             mdp.type = "password";
+            mdpConf.type = "password"
         }
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-
 </script>
 </body>
 </html>

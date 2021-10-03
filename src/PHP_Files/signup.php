@@ -31,7 +31,7 @@
                        id="conf_password" name="conf_password">
 
                 <label>
-                    <input id="voir_mdp" name="show_password" type="checkbox" onclick="fonction_voir_mdp()">
+                    <input id="voir_mdp" name="show_password" type="checkbox" onclick="fonction_voir_mdp_inscription()">
                     <span class="ml-4 text-sm">Show password</span>
                 </label>
 
