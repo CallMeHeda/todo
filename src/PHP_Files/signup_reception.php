@@ -1,5 +1,5 @@
 <?php
-if ($_POST['password'] != $_POST['password_conf']) {
+if ($_POST['password'] != $_POST['conf_password']) {
     echo "Error Password";
 //    header('Location:index.php?choix=new_member_formulaire&mess=err_mdp');
 }
@@ -10,14 +10,13 @@ $sth = $dbh->query($sql);
 $new_user = $sth->fetch(PDO::FETCH_ASSOC);
 if ($new_user['login'] === $login) {
     header('Location:index.php?choix=new_member_formulaire&mess=err_login');
-} elseif (($_POST['password'] === $_POST['password_conf']) && ($new_user['login'] !== $login)) {
+} elseif (($_POST['password'] === $_POST['conf_password']) && ($new_user['login'] !== $login)) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $sql = "INSERT INTO user(login,password) VALUES('$login', '$password')";
 
-
     $nb_lignes_inserees = $dbh->exec($sql);
-    var_dump($nb_lignes_inserees);
+//    var_dump($nb_lignes_inserees);
 
     if ($nb_lignes_inserees === 1) {
 //        echo("Reussite de l’INSERT : 1 ligne a été inseree en DB.");

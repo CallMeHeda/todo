@@ -11,19 +11,24 @@
         <div class="w-full md:w-1/2 flex flex-col items-center bg-white py-5 md:py-8 px-4">
 
             <h3 class="mb-4 font-bold text-3xl flex items-center text-red-500">
-                LOGIN
+                SIGN UP
             </h3>
 
-            <form action="index.php?choix=authentification_start" method="POST"
+            <form action="index.php?choix=signup_reception" method="POST"
                   class="px-3 flex flex-col justify-center items-center w-full gap-3">
 
                 <input
                         type="text" id="login"
                         class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                         placeholder="login" name="login">
+
                 <input type="password" placeholder="password"
                        class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                        id="password" name="password">
+
+                <input type="password" placeholder="confirm password"
+                       class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                       id="conf_password" name="conf_password">
 
                 <label>
                     <input id="voir_mdp" name="show_password" type="checkbox" onclick="fonction_voir_mdp()">
@@ -32,16 +37,16 @@
 
                 <button class="btn-log" type="submit">
                     <i class="far fa-sign-in-alt fa-flip-horizontal"></i>
-                    <p class="ml-1 text-lg">Login</p>
+                    <p class="ml-1 text-lg">Sign up</p>
                 </button>
             </form>
-            <p class="text-gray-700 text-sm mt-2">
-                don't have an account?
-                <a href="index.php?choix=new_member_formulaire"
-                   class="text-green-400 hover:text-green-600 mt-3 focus:outline-none font-bold underline">
-                    register
-                </a>
-            </p>
+<!--            <p class="text-gray-700 text-sm mt-2">-->
+<!--                don't have an account?-->
+<!--                <a href="index.php?choix=new_member_formulaire"-->
+<!--                   class="text-green-400 hover:text-green-600 mt-3 focus:outline-none font-bold underline">-->
+<!--                    register-->
+<!--                </a>-->
+<!--            </p>-->
         </div>
     </div>
 </div>
