@@ -57,12 +57,7 @@ switch ($choix) {
 ?>
 <script>
     $(document).ready(function () {
-        // $(function () {
-        //     $('body').css('visibility', 'visible');
-        // });
-
         if (!<?php echo isset($_SESSION['login'])?'true':'false'; ?>) {
-            // $(".container").hide();
             $(".login_window").show();
             console.log("not logged")
         } else {
@@ -145,18 +140,22 @@ switch ($choix) {
             var id = $('#taskId').val();
             var task = $('.edit_task').val();
 
-            $.ajax({
-                url : 'src/PHP_Files/update_tache.php',
-                method : 'POST',
-                data : {tache : task,id : id},
-                success : function (){
-                    $('#' + id).children('td[data-target=todo]').text(task);
-                    // close modal
-                    $(".modal").addClass("hidden");
-                    $(".modal").removeClass("block");
-                    $("form").show();
-                }
-            });
+            if(task !== "") {
+                $.ajax({
+                    url: 'src/PHP_Files/update_tache.php',
+                    method: 'POST',
+                    data: {tache: task, id: id},
+                    success: function () {
+                        $('#' + id).children('td[data-target=todo]').text(task);
+                        // close modal
+                        $(".modal").addClass("hidden");
+                        $(".modal").removeClass("block");
+                        $("form").show();
+                    }
+                });
+            }else {
+                alert("Nothing to do?");
+            }
         });
 
         //NB CHAR INPUT
