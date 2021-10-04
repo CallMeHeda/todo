@@ -1,8 +1,4 @@
 <?php
-if ($_POST['password'] != $_POST['conf_password']) {
-    echo "Error Password";
-//    header('Location:index.php?choix=new_member_formulaire&mess=err_mdp');
-}
 $login = $_POST['login'];
 $sql = "SELECT login FROM user WHERE login LIKE '$login'";
 $sth = $dbh->query($sql);
@@ -10,7 +6,9 @@ $sth = $dbh->query($sql);
 $new_user = $sth->fetch(PDO::FETCH_ASSOC);
 if ($new_user['login'] === $login) {
     header('Location:index.php?choix=new_member_formulaire&mess=err_login');
-} elseif (($_POST['password'] === $_POST['conf_password']) && ($new_user['login'] !== $login)) {
+}elseif ($_POST['password'] != $_POST['conf_password']) {
+    header('Location:index.php?choix=new_member_formulaire&mess=err_password');
+}else{
     $login = $_POST['login'];
     $password = $_POST['password'];
     $sql = "INSERT INTO user(login,password) VALUES('$login', '$password')";

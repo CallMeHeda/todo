@@ -21,6 +21,12 @@
                         type="text" id="login"
                         class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                         placeholder="login" name="login">
+                <?php if (isset($_GET['mess'])) {
+                    if ($_GET['mess'] == 'err_login') {
+                        echo("<p class='relative -top-2.5 text-red-600 text-sm'>Login already exists</p>");
+                    }
+                }
+                ?>
 
                 <input type="password" placeholder="password"
                        class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
@@ -29,7 +35,12 @@
                 <input type="password" placeholder="confirm password"
                        class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                        id="conf_password" name="conf_password">
-
+                <?php if (isset($_GET['mess'])) {
+                    if ($_GET['mess'] == 'err_password') {
+                        echo("<p class='relative -top-2.5 text-red-600 text-sm'>Passwords doesn't match</p>");
+                    }
+                }
+                ?>
                 <label>
                     <input id="voir_mdp" name="show_password" type="checkbox" onclick="fonction_voir_mdp_inscription()">
                     <span class="ml-4 text-sm">Show password</span>
@@ -40,13 +51,6 @@
                     <p class="ml-1 text-lg">Sign up</p>
                 </button>
             </form>
-<!--            <p class="text-gray-700 text-sm mt-2">-->
-<!--                don't have an account?-->
-<!--                <a href="index.php?choix=new_member_formulaire"-->
-<!--                   class="text-green-400 hover:text-green-600 mt-3 focus:outline-none font-bold underline">-->
-<!--                    register-->
-<!--                </a>-->
-<!--            </p>-->
         </div>
     </div>
 </div>

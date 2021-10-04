@@ -31756,17 +31756,17 @@ input {
 
 .tache::-moz-placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgba(248, 113, 113, var(--tw-placeholder-opacity));
+  color: rgba(156, 163, 175, var(--tw-placeholder-opacity));
 }
 
 .tache:-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgba(248, 113, 113, var(--tw-placeholder-opacity));
+  color: rgba(156, 163, 175, var(--tw-placeholder-opacity));
 }
 
 .tache::placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgba(248, 113, 113, var(--tw-placeholder-opacity));
+  color: rgba(156, 163, 175, var(--tw-placeholder-opacity));
 }
 
 .tache {
@@ -31963,6 +31963,14 @@ input {
 .btn-form {
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-form:hover {
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+}
+
+.btn-form {
   width: 5rem;
 }
 
@@ -32195,27 +32203,6 @@ input {
     margin-left: 2rem;
     left: 100%;
   }
-}
-
-.loginUser{
-  display: flex;
-  justify-content: center;
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  margin-left: 18rem;
-  margin-top: -0.5rem;
-  --tw-text-opacity: 1;
-  color: rgba(0, 0, 0, var(--tw-text-opacity));
-}
-
-@media (min-width: 640px) {
-  .loginUser {
-    margin-left: 20rem;
-  }
-}
-
-.loginUser {
-  font-family: 'Italianno', cursive;
 }
 
 .letsRemember{

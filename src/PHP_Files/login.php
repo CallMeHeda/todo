@@ -1,22 +1,4 @@
 <?php
-//session_start();
-if (isset($_GET['msg'])) {
-    $msg = $_GET['msg'];
-    switch ($msg) {
-        case 'err_sql' :
-            echo("<p>SQL ERROR</p> \r\n");
-            break;
-        case 'err_login' :
-            echo("<p>Login doesn't exists</p> \r\n");
-            break;
-        case 'err_password' :
-            echo("<p>Wrong password</p> \r\n");
-            break;
-        default :
-            echo("<p>Error message not supported</p> \r\n");
-            break;
-    }
-}
 if (!isset($_SESSION['login'])) {
     ?>
     <div class="login_window">
@@ -42,10 +24,21 @@ if (!isset($_SESSION['login'])) {
                             type="text" id="login"
                             class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                             placeholder="login" name="login">
+                    <?php if (isset($_GET['msg'])) {
+                        if ($_GET['msg'] == 'err_login') {
+                            echo("<p class='relative -top-2.5 text-red-600 text-sm'>Login doesn't exists</p>");
+                        }
+                    }
+                    ?>
                     <input type="password" placeholder="password"
                            class="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                            id="password" name="password">
-
+                    <?php if (isset($_GET['msg'])) {
+                        if ($_GET['msg'] == 'err_password') {
+                            echo("<p class='relative -top-2.5 text-red-600 text-sm'>Wrong password</p>");
+                        }
+                    }
+                    ?>
                     <label>
                         <input id="voir_mdp" name="show_password" type="checkbox" onclick="fonction_voir_mdp()">
                         <span class="ml-4 text-sm">Show password</span>

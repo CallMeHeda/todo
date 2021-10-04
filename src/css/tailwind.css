@@ -25,7 +25,7 @@ input {
     @apply -mr-4;
 }
 .tache {
-    @apply mt-12 rounded-l-lg shadow-lg placeholder-red-400 h-12 pl-4 pr-8 outline-none sm:w-96;
+    @apply mt-12 rounded-l-lg shadow-lg placeholder-gray-400 h-12 pl-4 pr-8 outline-none sm:w-96;
 }
 #displaydata{
     @apply bg-transparent m-auto flex justify-center bg-transparent;
@@ -53,7 +53,7 @@ input {
     @apply rounded-lg shadow-lg placeholder-red-400 h-12 pl-4 pr-8 ml-8 outline-none sm:w-80;
 }
 .btn-form {
-    @apply relative top-1.5 text-xs bg-red-500 rounded-r-lg hover:bg-green-300 hover:shadow-lg text-white font-bold shadow-lg w-20 h-12 sm:w-36 sm:relative sm:-top-px sm:text-sm sm:ml-2.5;
+    @apply relative top-1.5 text-xs bg-red-500 rounded-r-lg hover:bg-green-300 hover:shadow-lg text-white hover:text-black font-bold shadow-lg w-20 h-12 sm:w-36 sm:relative sm:-top-px sm:text-sm sm:ml-2.5;
 }
 .countChar {
     @apply absolute text-gray-400 mt-20 -ml-6 text-xs;
@@ -81,10 +81,6 @@ input {
 }
 .logout{
     @apply left-80 relative w-max top-2 md:left-full md:ml-8 hover:text-red-400;
-}
-.loginUser{
-    @apply flex justify-center ml-72 sm:ml-80 text-3xl -mt-2 text-black;
-    font-family: 'Italianno', cursive;
 }
 .letsRemember{
     @apply mb-2 text-black text-xl hidden md:block;
