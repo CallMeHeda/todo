@@ -27,6 +27,7 @@ switch ($choix) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Italianno">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=WindSong:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="src/img/favicon.ico" type="image/gif" sizes="16x16">
     <title>ToDo List</title>
 </head>
 
@@ -59,7 +60,6 @@ switch ($choix) {
     $(document).ready(function () {
         if (!<?php echo isset($_SESSION['login'])?'true':'false'; ?>) {
             $(".login_window").show();
-            console.log("not logged")
         } else {
             $(".div_log").show();
             $(".container").show();
@@ -105,81 +105,6 @@ switch ($choix) {
                     $(".countChar").html((tache.length - 1) + "/80");
                 }
             }
-        });
-
-        // DELETE TO DO
-        $(document).on('click', 'button[data-role=delete]', function () {
-            var id = $(this).data('id');
-            var task = $('.task').val();
-
-            $.ajax({
-                url : 'src/PHP_Files/delete_tache.php',
-                method : 'POST',
-                data : {tache : task,id : id},
-                success : function (){
-                    $('#' + id).remove();
-                }
-            });
-        });
-
-        // UPDATE TO DO
-        $(document).on('click', 'button[data-role=update]', function () {
-            var id = $(this).data('id');
-            var tache = $('#' + id).children('td[data-target=todo]').text();
-            $(".modal").removeClass("hidden");
-            $(".modal").addClass("block");
-            $("form").hide();
-
-            $('.edit_task').val(tache);
-            $('#taskId').val(id);
-        });
-
-        // Confirm update
-        $('.save').click(function (e){
-            e.preventDefault();
-            var id = $('#taskId').val();
-            var task = $('.edit_task').val();
-
-            if(task !== "") {
-                $.ajax({
-                    url: 'src/PHP_Files/update_tache.php',
-                    method: 'POST',
-                    data: {tache: task, id: id},
-                    success: function () {
-                        $('#' + id).children('td[data-target=todo]').text(task);
-                        // close modal
-                        $(".modal").addClass("hidden");
-                        $(".modal").removeClass("block");
-                        $("form").show();
-                    }
-                });
-            }else {
-                alert("Nothing to do?");
-            }
-        });
-
-        //NB CHAR INPUT
-        $('.edit_task').keydown(function (e) {
-            var tache = $(".edit_task").val();
-
-            if (e.keyCode !== 8) {
-                if (this.value.length >= 80) {
-                    return false;
-                } else {
-                    $(".countCharEdit").html((tache.length + 1) + "/80");
-                }
-            } else {
-                if (this.value.length > 0 && this.value.length <= 80) {
-                    $(".countCharEdit").html((tache.length - 1) + "/80");
-                }
-            }
-        });
-
-        // Close the modal when cancel button clicked
-        $(".cancel").click(function () {
-            $(".modal").addClass("hidden");
-            $(".modal").removeClass("block");
-            $("form").show();
         });
     })
 

@@ -4,10 +4,20 @@
                 <a href="index.php?choix=authentification_stop"><i class="fas fa-sign-out-alt fa-lg"></i></a>
             </div>
             <?php
-            if (substr($_SESSION['login'], -1) == 's') { ?>
-                <h1><span><?php echo $_SESSION['login']; ?></span> TO DO List</h1>
-            <?php } else { ?>
-                <h1><span><?php echo $_SESSION['login']; ?>'s</span> TO DO List</h1>
+            if (substr($_SESSION['login'], -1) == 's') {
+                if (strlen($_SESSION['login']) > 11) {
+                    ?>
+                    <h1 class="text-2xl sm:text-6xl"><span><?php echo $_SESSION['login']; ?></span> TO DO List</h1>
+                <?php } else { ?>
+                    <h1 class="text-6xl"><span><?php echo $_SESSION['login']; ?></span> TO DO List</h1>
+                <?php } ?>
+            <?php } else {
+                if (strlen($_SESSION['login']) > 11) {
+                    ?>
+                    <h1 class="text-2xl sm:text-6xl"><span><?php echo $_SESSION['login']; ?>'s</span> TO DO List</h1>
+                <?php } else { ?>
+                    <h1 class="text-6xl"><span><?php echo $_SESSION['login']; ?>'s</span> TO DO List</h1>
+                <?php } ?>
             <?php } ?>
             <div class="form-container">
                 <form action="" method="POST" class="form_task">
@@ -17,5 +27,5 @@
                     <button class="btn-form">Let's remember!</button>
                 </form>
             </div>
-            <div id="displaydata" class="logged"><?php include('src/PHP_Files/insert_tache.php'); ?></div>
+            <div id="displaydata" class="logged"><?php include('src/PHP_Files/insert_tache.php'); ?>
         <?php } ?>

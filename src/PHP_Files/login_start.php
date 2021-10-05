@@ -15,7 +15,7 @@ if ($requete_correcte === FALSE) {
     $user = $sth->fetch(PDO::FETCH_ASSOC);
     if (empty($user)) {
         header('Location:index.php?choix=home&msg=err_login');
-    } elseif ($password_tentative === $user['password']) {
+    } elseif (password_verify($password_tentative,$user['password'])) {
         session_regenerate_id();
         @ini_set('session.gc_maxlifetime', 10800);
         $_SESSION['login'] = $user['login'];

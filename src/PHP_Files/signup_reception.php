@@ -11,13 +11,12 @@ if ($new_user['login'] === $login) {
 }else{
     $login = $_POST['login'];
     $password = $_POST['password'];
-    $sql = "INSERT INTO user(login,password) VALUES('$login', '$password')";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO user(login,password) VALUES('$login', '$hash')";
 
     $nb_lignes_inserees = $dbh->exec($sql);
-//    var_dump($nb_lignes_inserees);
 
     if ($nb_lignes_inserees === 1) {
-//        echo("Reussite de l’INSERT : 1 ligne a été inseree en DB.");
         header('Location:index.php?choix=se_connecter');
     } elseif ($nb_lignes_inserees === 0) {
         echo("Requete SQL syntaxiquement correcte MAIS aucune ligne n’a

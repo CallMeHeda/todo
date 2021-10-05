@@ -12,20 +12,26 @@ body{
     @apply bg-gradient-to-bl from-green-300 to-red-300 bg-fixed;
 }
 h1 {
-    @apply text-6xl text-center mt-5 text-red-400 sm:tracking-wider;
+    @apply text-center mt-5 text-red-400 sm:tracking-wider;
     font-family: 'Permanent Marker', cursive;
 }
 h1 span{
-    @apply text-black;
+    @apply text-black ;
 }
 .form-container {
-    @apply flex flex-row justify-center items-start h-full;
+    @apply flex flex-row justify-center items-start h-full ml-4;
 }
 input {
     @apply -mr-4;
 }
 .tache {
-    @apply mt-12 rounded-l-lg shadow-lg placeholder-gray-400 h-12 pl-4 pr-8 outline-none sm:w-96;
+    @apply mt-12 rounded-l-lg mr-24 sm:-mr-4 shadow-lg placeholder-gray-400 h-12 pl-4 sm:pr-8 outline-none w-60 sm:w-96;
+}
+.countChar {
+    @apply absolute text-gray-400 mt-20 -ml-40 sm:-ml-6 text-xs;
+}
+.btn-form {
+    @apply relative left-52 -top-12 sm:top-52 sm:mt-1 sm:top-1.5 text-xs bg-red-500 rounded-r-lg hover:bg-green-300 hover:shadow-lg text-white hover:text-black font-bold shadow-lg sm:w-20 h-12 sm:w-36 sm:-top-px sm:left-0 sm:text-sm sm:ml-2.5 pl-1 pr-1;
 }
 #displaydata{
     @apply bg-transparent m-auto flex justify-center bg-transparent;
@@ -51,12 +57,6 @@ input {
 }
 .edit_task{
     @apply rounded-lg shadow-lg placeholder-red-400 h-12 pl-4 pr-8 ml-8 outline-none sm:w-80;
-}
-.btn-form {
-    @apply relative top-1.5 text-xs bg-red-500 rounded-r-lg hover:bg-green-300 hover:shadow-lg text-white hover:text-black font-bold shadow-lg w-20 h-12 sm:w-36 sm:relative sm:-top-px sm:text-sm sm:ml-2.5;
-}
-.countChar {
-    @apply absolute text-gray-400 mt-20 -ml-6 text-xs;
 }
 .countCharEdit{
     @apply absolute text-gray-400 mt-8 -ml-6 text-xs;
